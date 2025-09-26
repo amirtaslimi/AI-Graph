@@ -15,7 +15,7 @@ from typing import Any, Dict, Optional, Tuple
 
 import ffmpeg_downloader as ffdl
 
-from ai_graph.step.base import BasePipelineStep
+from ..base import BasePipelineStep
 
 logger = logging.getLogger(__name__)
 
