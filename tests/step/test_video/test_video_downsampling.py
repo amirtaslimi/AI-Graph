@@ -3,8 +3,7 @@
 import json
 import subprocess
 from pathlib import Path
-from unittest.mock import MagicMock, patch
-from unittest.mock import Mock
+from unittest.mock import MagicMock, Mock, patch
 
 import pytest
 
