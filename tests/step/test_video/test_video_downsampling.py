@@ -4,6 +4,7 @@ import json
 import subprocess
 from pathlib import Path
 from unittest.mock import MagicMock, patch
+from unittest.mock import Mock
 
 import pytest
 
@@ -81,9 +82,16 @@ def test_install_ffmpeg_non_zero_exit(mock_subprocess_run):
         install_ffmpeg()
 
 
-def test_video_downsampling_init():
+def test_video_downsampling_init(mocker):
     """Test initialization of VideoDownsamplingStep."""
+    # Mock subprocess.run to simulate successful ffmpeg and ffprobe checks
+    mock_run = mocker.patch('subprocess.run')
+    mock_run.return_value = Mock(returncode=0)  # Simulate successful command execution
+
+    # Initialize the step
     step = VideoDownsamplingStep(output_fps=15, output_resolution="1280x720", output_format="webm", name="TestStep")
+    
+    # Assert attributes are set correctly
     assert step.output_fps == 15
     assert step.output_resolution == "1280x720"
     assert step.output_format == "webm"
